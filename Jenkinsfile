@@ -6,15 +6,6 @@ pipeline {
     timeout(time: 20, unit: 'MINUTES') // Set a timeout on the total execution time of the job
   }
   agent {
-	{
-                        label 'python'
-                }
-
-        environment
-                {
-                        PATH = "/usr/bin:$PATH"
-                }
-  
     // Run this job within a Docker container built using Dockerfile.build
     // contained within your projects repository. This image should include
     // the core runtimes and dependencies required to run the job,
