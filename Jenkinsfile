@@ -9,6 +9,15 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '0397a522-fa2f-488f-a87c-61b600661c0f', url: 'https://github.com/espireinfolabs/hello-world-python.git']])
             }
         }
+	    stage('Setup') { // Install any dependencies you need to perform testing
+            steps {
+               script {
+                  sh """
+                    pip install -r requirements.txt
+                     """
+        }
+      }
+    }
         stage('Build') {
             steps {
                 git branch: 'master', url: 'https://github.com/espireinfolabs/hello-world-python.git'
