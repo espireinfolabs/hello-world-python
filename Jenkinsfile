@@ -7,6 +7,11 @@ pipeline {
     dockerfile { filename 'Dockerfile.build' }
   }
   stages {  // Define the individual processes, or stages, of your CI pipeline
+    stage('Checkout') { // Checkout (git clone ...) the projects repository
+      steps {
+        checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '0397a522-fa2f-488f-a87c-61b600661c0f', url: 'https://github.com/espireinfolabs/hello-world-python.git']])
+      }
+    }
     stage('Setup') { // Install any dependencies you need to perform testing
       steps {
         script {
